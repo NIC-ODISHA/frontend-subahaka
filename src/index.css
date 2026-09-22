@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─── */
+:root {
+  --bg-primary: #1a3a6b;
+  --bg-secondary: #0d1f3c;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --accent: #4fc3f7;
+  --accent-warm: #ffb74d;
+  --accent-rain: #81d4fa;
+}
+
+/* ─── Base Reset ─── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #1a3a6b 0%, #0d1f3c 50%, #1a3a6b 100%);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* ─── Glass Card Utility ─── */
+@layer components {
+  .glass-card {
+    @apply rounded-2xl;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  .glass-card-dark {
+    @apply rounded-2xl;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    transition: all 0.2s ease;
+  }
+
+  .glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(79, 195, 247, 0.5);
+    box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
+  }
+
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-btn {
+    @apply rounded-xl;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .glass-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  .glass-btn-active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255,255,255,0.3);
+    color: white;
+    font-weight: 600;
+  }
+
+  .sidebar-icon-btn {
+    @apply flex items-center justify-center w-10 h-10 rounded-xl cursor-pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    color: rgba(255,255,255,0.45);
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    transform: scale(1.05);
+  }
+
+  .sidebar-icon-btn.active {
+    background: rgba(79, 195, 247, 0.15);
+    border-color: rgba(79, 195, 247, 0.3);
+    color: #4fc3f7;
+    box-shadow: 0 0 12px rgba(79,195,247,0.2);
+  }
+
+  .metric-pill {
+    @apply flex flex-col items-center gap-1 rounded-xl p-2;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+  }
+
+  .metric-pill:hover {
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .forecast-row {
+    @apply flex items-center gap-3 p-2 rounded-xl cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .forecast-row:hover,
+  .forecast-row.active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .city-row {
+    @apply flex items-center justify-between py-2.5 px-3 rounded-xl cursor-pointer;
+    transition: all 0.2s ease;
+  }
+
+  .city-row:hover {
+    background: rgba(255,255,255,0.06);
+  }
+}
+
+/* ─── Animated Background Clouds ─── */
+.cloud-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cloud-1 {
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  width: 160px;
+  opacity: 0.85;
+  animation: float 9s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(255,255,255,0.15));
+}
+
+.cloud-2 {
+  position: absolute;
+  top: 2%;
+  left: 38%;
+  width: 120px;
+  opacity: 0.7;
+  animation: float 12s ease-in-out 1.5s infinite;
+  filter: drop-shadow(0 8px 24px rgba(255,255,255,0.1));
+}
+
+.cloud-3 {
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  width: 180px;
+  opacity: 0.8;
+  animation: float 10s ease-in-out 3s infinite;
+  filter: drop-shadow(0 10px 30px rgba(255,255,255,0.12));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-14px) translateX(4px); }
+  66%       { transform: translateY(-6px) translateX(-3px); }
+}
+
+/* ─── Leaflet Map Override ─── */
+.leaflet-container {
+  background: rgba(0,0,0,0.2) !important;
+  border-radius: 16px;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255,255,255,0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+/* ─── Recharts Override ─── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(10, 25, 50, 0.9) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: rgba(255,255,255,0.5) !important;
+  font-size: 11px !important;
+}
+
+/* ─── Shimmer Loading ─── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ─── Temperature Badge ─── */
+.temp-gradient {
+  background: linear-gradient(135deg, #4fc3f7, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Smooth Transitions ─── */
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Toggle Active Pill */
+.toggle-active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+}
+
+.toggle-inactive {
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+}
