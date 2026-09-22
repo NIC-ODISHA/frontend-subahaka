@@ -48,6 +48,7 @@ src/
 └── utils/            Shared weather helpers and icon mappings
 ```
 
+
 ## Backend API Used
 
 The frontend uses these endpoints through the `/api` proxy:
@@ -61,9 +62,11 @@ The frontend uses these endpoints through the `/api` proxy:
 - `POST /api/user/favorites`
 - `DELETE /api/user/favorites/{id}`
 
+
 ## Production Notes
 
 The Vite development proxy is configured only for local development. For production, serve the built files from a web server and configure that server to forward `/api` requests to the deployed backend, or update the Axios base URL in `src/api/weatherApi.js` to match the deployment architecture.
+
 
 ## Troubleshooting
 
