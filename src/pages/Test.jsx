@@ -9,3 +9,24 @@ export default function Test() {
     </div>
   );
 }
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    padding: '1rem',
+    height: '100%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  title: {  
+  color: 'white',
+  fontSize: '1.5rem',
+  fontWeight: 'bold',
+  },
+  description: {
+  color: 'white',
+  fontSize: '0.875rem',
+  },
+};
